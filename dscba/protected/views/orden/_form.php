@@ -16,20 +16,13 @@
 	<?php echo $form->errorSummary($model);?>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'usr_id'); ?>
-		<?php echo Yii::app()->user->name;//echo $form->textField($model,'usr_id'); ?>
-		<?php echo $form->error($model,'usr_id'); ?>
-	</div>
-	<div class="row">
-		<?php echo $form->labelEx($model,'suc_id'); ?>
+		<b>Usuario</b>: <?php echo Yii::app()->user->name;//echo $form->textField($model,'usr_id'); ?> - <b>Sucursal</b>
 		<?php echo $form->textField($model,'suc_id'); ?>
-		<?php echo $form->error($model,'suc_id'); ?>
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'cli_id'); ?>
-		<?php echo $form->labelEx($model, cliente::model()->findByPk($model->cli_id)->apellido.', '.cliente::model()->findByPk($model->cli_id)->nombre); ?>
-		<?php echo $form->labelEx($model, cliente::model()->findByPk($model->cli_id)->dni.' Tel: '.cliente::model()->findByPk($model->cli_id)->telefono); ?>
+		<b>Cliente</b>: <?php echo cliente::model()->findByPk($model->cli_id)->apellido.', '.cliente::model()->findByPk($model->cli_id)->nombre; ?> -
+		<b>DNI</b>: <?php echo cliente::model()->findByPk($model->cli_id)->dni.' - <b>Tel</b>: '.cliente::model()->findByPk($model->cli_id)->telefono; ?>
 	</div>
 	
 	<div class="row">
