@@ -87,9 +87,10 @@ class OrdenController extends Controller
 		$cliente=new Cliente();
 		$model->cli_id = $id;
 		$model->usr_id = Yii::app()->user->id;
-		echo "<pre>";
+		//$sucid = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'nombre');
+		/*echo "<pre>";
 		print_r(Yii::app()->user);
-		echo "</pre>";
+		echo "</pre>";*/
 		//$model->suc_id = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'sucid'); 
 		/*$this->render('view',array(
 			'model'=>$this->loadModel($id),
