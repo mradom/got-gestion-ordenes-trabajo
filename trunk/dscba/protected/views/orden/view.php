@@ -18,7 +18,7 @@ $this->menu=array(
 
 <h1>Ver Orden #<?php echo $model->id; ?></h1>
 <div class="row">
-	Sucursal:<?php echo $suc::model()->findByPk($model->suc_id)->nombre ?>
+	Sucursal:<?php echo Sucursal::model()->findByPk($model->suc_id)->nombre; ?>
 	- Orden creada por: <?php echo Yii::app()->user->name;?>
 </div>
 <?php $this->widget('zii.widgets.CDetailView', array(

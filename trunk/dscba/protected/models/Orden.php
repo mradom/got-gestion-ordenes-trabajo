@@ -106,20 +106,21 @@ class Orden extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
+		
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('esn',$this->esn,true);
 		$criteria->compare('modelo',$this->modelo,true);
-		$criteria->compare('accesorios',$this->accesorios,true);
-		$criteria->compare('falla',$this->falla,true);
+		//$criteria->compare('accesorios',$this->accesorios,true);
+		//$criteria->compare('falla',$this->falla,true);
 		$criteria->compare('apa_id',$this->apa_id);
 		$criteria->compare('cli_id',$this->cli_id);
 		$criteria->compare('suc_id',$this->suc_id);
 		$criteria->compare('mar_id',$this->mar_id);
 		$criteria->compare('uid',$this->uid);
-
+		$criteria->order = "id desc";
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
