@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Crear Orden</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'cli'=>$cli,'suc'=>$suc)); ?>

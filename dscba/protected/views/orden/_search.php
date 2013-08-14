@@ -47,11 +47,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'usr_id'); ?>
-		<?php echo $form->textField($model,'usr_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'suc_id'); ?>
 		<?php echo $form->textField($model,'suc_id'); ?>
 	</div>
@@ -59,6 +54,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'mar_id'); ?>
 		<?php echo $form->textField($model,'mar_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'uid'); ?>
+		<?php echo $form->textField($model,'uid'); ?>
 	</div>
 
 	<div class="row buttons">
