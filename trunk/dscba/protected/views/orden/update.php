@@ -3,7 +3,7 @@
 /* @var $model Orden */
 
 $this->breadcrumbs=array(
-	'Ordens'=>array('index'),
+	'Orden'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Actualizar',
 );
@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Actualizar Orden <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'suc'=>$suc)); ?>

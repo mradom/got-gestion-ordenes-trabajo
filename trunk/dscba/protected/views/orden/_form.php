@@ -17,7 +17,7 @@
 	
 	<div class="row">
 		<b>Usuario</b>: <?php echo Yii::app()->user->name;//echo $form->textField($model,'usr_id'); ?> - <b>Sucursal</b>
-		<?php echo $form->textField($model,'suc_id'); ?>
+		<?php echo $suc->findByPk($model->suc_id)->nombre; // $model->suc_id ;//$form->textField($model,'suc_id'); ?>
 	</div>
 	
 	<div class="row">

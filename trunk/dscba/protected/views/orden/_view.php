@@ -34,16 +34,16 @@
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('usr_id')); ?>:</b>
-	<?php echo CHtml::encode($data->usr_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('suc_id')); ?>:</b>
 	<?php echo CHtml::encode($data->suc_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('mar_id')); ?>:</b>
 	<?php echo CHtml::encode($data->mar_id); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('uid')); ?>:</b>
+	<?php echo CHtml::encode($data->uid); ?>
 	<br />
 
 	*/ ?>

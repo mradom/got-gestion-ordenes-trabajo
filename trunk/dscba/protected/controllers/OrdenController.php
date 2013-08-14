@@ -53,8 +53,10 @@ class OrdenController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$sucursal = new Sucursal();
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'suc'=>$sucursal,
 		));
 	}
 
@@ -80,38 +82,6 @@ class OrdenController extends Controller
 			'model'=>$model,
 		));
 	}
-	
-	public function actionCrear($id)
-	{
-		$model=new Orden;
-		$cliente=new Cliente();
-		$model->cli_id = $id;
-		$model->usr_id = Yii::app()->user->id;
-		//$sucid = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'nombre');
-		/*echo "<pre>";
-		print_r(Yii::app()->user);
-		echo "</pre>";*/
-		//$model->suc_id = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'sucid'); 
-		/*$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));*/
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Orden']))
-		{
-			$model->attributes=$_POST['Orden'];
-			//$model->cli_id = $id;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('crear',array(
-			'model'=>$model,
-			'cli'=>$cliente,
-		));
-	}
 
 	/**
 	 * Updates a particular model.
@@ -121,6 +91,9 @@ class OrdenController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$cliente=new Cliente();
+		$usuario = new Usuario();
+		$sucursal = new Sucursal();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -134,6 +107,7 @@ class OrdenController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'suc'=>$sucursal,
 		));
 	}
 
@@ -203,5 +177,41 @@ class OrdenController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionCrear($id)
+	{
+		$model=new Orden;
+		$cliente=new Cliente();
+		$usuario = new Usuario();
+		$sucursal = new Sucursal();
+		$model->cli_id = $id;
+		$model->uid = Yii::app()->user->id;
+		$model->suc_id = $sucursal->findByPk($usuario->findBySql("select suc_id from usuario where uid ='".$model->uid."'")->suc_id)->id;
+		//$sucid = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'nombre');
+		/*echo "<pre>";
+		print_r(Yii::app()->user);
+		echo "</pre>";*/
+		//$model->suc_id = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'sucid'); 
+		/*$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));*/
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Orden']))
+		{
+			$model->attributes=$_POST['Orden'];
+			//$model->cli_id = $id;
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('crear',array(
+			'model'=>$model,
+			'cli'=>$cliente,
+			'suc'=>$sucursal,
+		));
 	}
 }
