@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Listar Orden', 'url'=>array('index')),
-	array('label'=>'Crear Orden', 'url'=>array('create')),
+	array('label'=>'Crear Orden', 'url'=>array('../index.php/cliente')), //create
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Ordens</h1>
+<h1>Administrar Orden</h1>
 
 <!--<p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -45,18 +45,53 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'esn',
-		'modelo',
-		'accesorios',
-		'falla',
-		'apa_id',
 		/*
 		'cli_id',
 		'suc_id',
 		'mar_id',
 		'uid',
 		*/
+		array(
+			'name'=>'id',
+			'header'=>'# Orden',
+			'value'=>$model->id,
+		),
+		array(
+			'name'=>'esn',
+			'header'=>'# SN',
+			'value'=>$model->esn,
+		),
+		array(
+			'name'=>'aparato.aparato',
+			'header'=>'Aparato',
+			'value'=>'$data->getRelated(\'apa\')->aparato', // ESTO TRAE EL DATO DE OTRA TABLA RELACIONADA
+		),
+		array(
+			'name'=>'marca.marca',
+			'header'=>'Marca',
+			'value'=>'$data->getRelated(\'mar\')->marca', // ESTO TRAE EL DATO DE OTRA TABLA RELACIONADA
+		),
+		array(
+			'name'=>'modelo',
+			'header'=>'Modelo',
+			'value'=>$model->modelo,
+		),
+		array(
+			'name'=>'cliente.id',
+			'header'=>'Apellido',
+			'value'=>'$data->getRelated(\'cli\')->apellido',
+		),
+		array(
+			'name'=>'cliente.id',
+			'header'=>'Nombre',
+			'value'=>'$data->getRelated(\'cli\')->nombre',
+		),
+		
+		array(
+			'name'=>'u.uid',
+			'header'=>'Atendido Por',
+			'value'=>'$data->getRelated(\'u\')->uid',
+		),
 		array(
 			'class'=>'CButtonColumn',
 		),

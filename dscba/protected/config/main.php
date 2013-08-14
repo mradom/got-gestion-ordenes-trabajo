@@ -76,8 +76,8 @@ return array(
                 //		'afterLoginUrl'=>array('/site/welcome'),  ( !!! no olvidar el slash inicial / )
                 //		'afterLogoutUrl'=>array('/site/page','view'=>'about'),
                 //
-                'afterLoginUrl'=>'../../site/index',
-                'afterLogoutUrl'=>null,
+                'afterLoginUrl'=>'site/index',
+                'afterLogoutUrl'=>'../../',
                 'afterSessionExpiredUrl'=>null,
     
                 // manejo del layout con cruge.
@@ -126,7 +126,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=ds',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		
