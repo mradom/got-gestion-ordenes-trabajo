@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class SiteController extends Controller
 {
@@ -23,6 +23,9 @@ class SiteController extends Controller
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
+			'eyui'=>array(
+            	'class'=>'EYuiAction',
+        	),
 		);
 	}
 

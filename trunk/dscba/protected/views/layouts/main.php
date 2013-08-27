@@ -18,7 +18,6 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
-
 <div class="container" id="page">
 
 	<div id="header">
@@ -26,16 +25,16 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<!-- MENU TECNICO -->
+		<?php 
+		/* MENU  DE SUPERADMIN */
+			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Clientes', 'url'=>array('/cliente'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Crear Orden', 'url'=>array('/cliente'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Administrar Usuarios'
-					, 'url'=>Yii::app()->user->ui->userManagementAdminUrl
-					, 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Clientes', 'url'=>array('/cliente'),    'visible'=>!Yii::app()->user->isGuest),
+				//array('label'=>'Crear Orden', 'url'=>array('/cliente'), 'visible'=>!Yii::app()->user->isGuest),//Yii::app()->user->checkAccess('superAdmin')),
+				array('label'=>'Ordenes', 'url'=>array('/orden/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Sucursal', 'url'=>array('/sucursal'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
+				array('label'=>'Administrar Usuarios', 'url'=>Yii::app()->user->ui->userManagementAdminUrl, 'visible'=>Yii::app()->user->checkAccess('superAdmin'),),
 				array('label'=>'Login'
 					, 'url'=>Yii::app()->user->ui->loginUrl
 					, 'visible'=>Yii::app()->user->isGuest),
@@ -43,7 +42,10 @@
 					, 'url'=>Yii::app()->user->ui->logoutUrl
 					, 'visible'=>!Yii::app()->user->isGuest),
 			),
-		)); ?>
+		)); 
+
+
+		?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
@@ -56,9 +58,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Copyright &copy; <?php echo date('Y'); ?> by PHPGroup.<br/>
+		Todos los derechos reservados.<br/>
+		<?php //echo Yii::powered(); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->

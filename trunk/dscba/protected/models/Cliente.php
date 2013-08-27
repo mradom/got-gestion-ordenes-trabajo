@@ -20,6 +20,12 @@
  */
 class Cliente extends CActiveRecord
 {
+
+	protected function beforeSave(){
+		$this->fecha = new CDbExpression('NOW()');
+		return parent::beforeSave();
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -114,6 +120,8 @@ class Cliente extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array('defaultOrder' => 'id desc'),
+			'pagination'=>array('pageSize'=>25),
 		));
 	}
 }

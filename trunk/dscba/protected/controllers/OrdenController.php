@@ -13,12 +13,7 @@ class OrdenController extends Controller
 	 */
 	public function filters()
 	{
-		/*return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);*/
-                /* USANDO CRUGE */
-                return array(array('CrugeAccessControlFilter'));
+		return array(array('CrugeAccessControlFilter'));
 	}
 
 	/**
@@ -29,7 +24,7 @@ class OrdenController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			array('deny',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
@@ -54,9 +49,31 @@ class OrdenController extends Controller
 	public function actionView($id)
 	{
 		$sucursal = new Sucursal();
+		$historial = new Historial();
+		$estado = new Estado();
+		$usuario = new Usuario();
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'suc'=>$sucursal,
+			'hist'=>$historial,
+			'estado'=>$estado,
+			'usuario'=>$usuario,
+		));
+	}
+	
+	public function actionImprimir($id)
+	{
+		$this->layout='//layouts/imprimir'; 
+		$sucursal = new Sucursal();
+		$historial = new Historial();
+		$estado = new Estado();
+		$usuario = new Usuario();
+		$this->render('imprimir',array(
+			'model'=>$this->loadModel($id),
+			'suc'=>$sucursal,
+			'hist'=>$historial,
+			'estado'=>$estado,
+			'usuario'=>$usuario,
 		));
 	}
 
@@ -69,13 +86,14 @@ class OrdenController extends Controller
 		$model=new Orden;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Orden']))
 		{
 			$model->attributes=$_POST['Orden'];
-			if($model->save())
+			if($model->save()){
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -145,7 +163,22 @@ class OrdenController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Orden']))
 			$model->attributes=$_GET['Orden'];
+		
+		$model->suc_id = Usuario::model()->findBySql("select * from usuario where cruge_id = ".Yii::app()->user->id)->suc_id;
+		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
 
+
+	public function actionMisOrdenes()
+	{
+		$model=new Orden('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$model->attributes=$_GET['Orden'];
+		
+		$model->suc_id = Usuario::model()->findBySql("select * from usuario where cruge_id = ".Yii::app()->user->id)->suc_id;
 		$this->render('admin',array(
 			'model'=>$model,
 		));
@@ -187,25 +220,14 @@ class OrdenController extends Controller
 		$sucursal = new Sucursal();
 		$model->cli_id = $id;
 		$model->uid = Yii::app()->user->id;
-		$model->suc_id = $sucursal->findByPk($usuario->findBySql("select suc_id from usuario where uid ='".$model->uid."'")->suc_id)->id;
-		//$sucid = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'nombre');
-		/*echo "<pre>";
-		print_r(Yii::app()->user);
-		echo "</pre>";*/
-		//$model->suc_id = Yii::app()->user->um->getFieldValue(Yi::app()->user->id,'sucid'); 
-		/*$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));*/
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$model->suc_id = $sucursal->findByPk($usuario->findBySql("select suc_id from usuario where cruge_id ='".$model->uid."'")->suc_id)->id;
 		if(isset($_POST['Orden']))
 		{
 			$model->attributes=$_POST['Orden'];
 			//$model->cli_id = $id;
-			if($model->save())
+			if($model->save()){
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('crear',array(

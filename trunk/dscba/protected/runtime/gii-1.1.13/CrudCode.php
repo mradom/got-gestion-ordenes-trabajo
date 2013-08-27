@@ -1,5 +1,5 @@
 <?php
 return array (
-  'template' => 'mi_template',
+  'template' => 'ajax_crud',
   'baseControllerClass' => 'Controller',
 );
