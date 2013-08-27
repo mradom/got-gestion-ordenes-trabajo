@@ -45,10 +45,28 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		//'id',
-		'dni',
-		'nombre',
-		'apellido',
+		array(
+			'name'=>'id',
+			'header'=>'#',
+			'value'=>$model->id,
+			'htmlOptions'=>array('width'=>'60'),
+		),
+		array(
+			'name'=>'dni',
+			'header'=>'DNI',
+			'value'=>$model->dni,
+			'htmlOptions'=>array('width'=>'60'),
+		),
+		array(
+			'name'=>'apellido',
+			'header'=>'Apellido',
+			'value'=>$model->apellido,
+		),
+		array(
+			'name'=>'nombre',
+			'header'=>'Nombre',
+			'value'=>$model->nombre,
+		),
 		//'domicilio',
 		'telefono',
 		'email',
@@ -61,7 +79,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
 			'class'=>'CButtonColumn',
 			'header'=>'Acciones',
-			'template'=>'{view}{update}{delete}{crear}',
+			'template'=>'{view}{update}{crear}',
 			'buttons'=>array
 			(
 				'email' => array
@@ -75,7 +93,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				(
 				    'label'=>'Orden Nueva',     //Text label of the button.
 				    'url'=>'Yii::app()->createUrl("orden/crear", array("id"=>$data->id))',       //A PHP expression for generating the URL of the button.
-				    //'imageUrl'=>'',  //Image URL of the button.
+				    'imageUrl'=>Yii::app()->request->baseUrl.'/images/new.png',  //Image URL of the button.
 				    'options'=>array(), //HTML options for the button tag.
 				),
 			),

@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar Orden', 'url'=>array('index')),
-	array('label'=>'Crear Orden', 'url'=>array('../index.php/cliente')), //create
+	//array('label'=>'Listar Orden', 'url'=>array('index')),
+	array('label'=>'Crear Orden', 'url'=>array('/cliente')), //create
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -55,6 +55,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'id',
 			'header'=>'# Orden',
 			'value'=>$model->id,
+			'htmlOptions'=>array('width'=>'60'),
 		),
 		array(
 			'name'=>'esn',
@@ -93,7 +94,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'value'=>'$data->getRelated(\'u\')->uid',
 		),
 		array(
+			'name'=>'suc.nombre',
+			'header'=>'sucursal',
+			'value'=>'$data->getRelated(\'suc\')->nombre',
+		),
+		array(
 			'class'=>'CButtonColumn',
+			'header'=>'Acciones',
+			'template'=>'{view}',
 		),
 	),
 )); ?>

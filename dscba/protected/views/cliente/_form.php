@@ -58,12 +58,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'fecha'); ?>
-		<?php echo $form->textField($model,'fecha'); ?>
-		<?php echo $form->error($model,'fecha'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'observacion'); ?>
 		<?php echo $form->textArea($model,'observacion',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'observacion'); ?>

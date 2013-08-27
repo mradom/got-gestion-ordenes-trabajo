@@ -65,20 +65,28 @@ class HistorialController extends Controller
 	public function actionCreate()
 	{
 		$model=new Historial;
-
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Historial']))
 		{
+			//$_POST['Historial']['orden_id'] = "20";
+			$_POST['Historial']['fecha'] = new CDbExpression('NOW()');
 			$model->attributes=$_POST['Historial'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				$this->redirect(array('/orden/'.$model->orden_id));
+			}else {
+				echo "<pre>";
+				print_r($this);
+				print_r($model->getErrors());
+				echo "</pre>";
+				die("HISTORIALCONTROLADOR.php CREATE");				
+			}
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+			//$this->redirect(array('/orden/'.$model->orden_id));		
+			//$this->render('create',array('model'=>$model,
+		
 	}
 
 	/**

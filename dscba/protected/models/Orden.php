@@ -26,6 +26,26 @@
  */
 class Orden extends CActiveRecord
 {
+	
+	protected function afterSave(){
+		$historial = new Historial();
+		$hist = new Historial();
+		//if (parent::afterSave()){
+			$historial->orden_id = $this->id;
+			$historial->estado_id = "1";
+			$historial->fecha = new CDbExpression('NOW()');
+			if(!$historial->save()){
+				//print_r($historial->getError());
+				print_r($historial->getErrors());
+				die("AFTERSAVE ORDEN MODEL");
+			}
+			//return parent::afterSave();
+		//}//else
+			//return parent::afterSave();
+				//print_r($historial->getError());
+		
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -119,10 +139,11 @@ class Orden extends CActiveRecord
 		$criteria->compare('suc_id',$this->suc_id);
 		$criteria->compare('mar_id',$this->mar_id);
 		$criteria->compare('uid',$this->uid);
-		$criteria->order = "id desc";
 		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array('defaultOrder' => 'id desc'),
+			'pagination'=>array('pageSize'=>25),
 		));
 	}
 }

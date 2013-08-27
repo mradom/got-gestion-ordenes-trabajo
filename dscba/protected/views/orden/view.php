@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar Orden', 'url'=>array('index')),
-	array('label'=>'Crear Orden', 'url'=>array('create')),
-	array('label'=>'Actulizar Orden', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar Orden', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Orden', 'url'=>array('admin')),
+	//array('label'=>'Listar Orden', 'url'=>array('index')),
+	array('label'=>'Crear Orden', 'url'=>array('/cliente')),
+	//array('label'=>'Actulizar Orden', 'url'=>array('update', 'id'=>$model->id)),
+	//array('label'=>'Borrar Orden', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Volver a Ordenes', 'url'=>array('admin')),
 );
 ?>
 
@@ -21,14 +21,18 @@ $this->menu=array(
 	Sucursal:<?php echo Sucursal::model()->findByPk($model->suc_id)->nombre; ?>
 	- Orden creada por: <?php echo Yii::app()->user->name;?>
 </div>
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php
+$list = Yii::app()->db->createCommand('select e.* from historial as h inner join estado as e on e.id = h.estado_id where h.fecha = ( select max(`fecha`) from historial where orden_id = h.orden_id ) and h.orden_id = '.$model->id)->queryAll();
+$estadoActual = "<span class='resaltar'>".$list[0]['descripcion']."</span>";
+$this->widget('zii.widgets.CDetailView', array(
+	'cssFile' => Yii::app()->request->baseUrl . '/css/MyCDetailView.css',
 	'data'=>$model,
 	'attributes'=>array(
-		array(
+	array(
             'label'=>'# Orden de Tabajo',
             'type'=>'raw',
             'value'=>$model->id,
-        ),
+	),
 		array(
             'label'=>'Aparato',
             'type'=>'raw',
@@ -65,5 +69,59 @@ $this->menu=array(
             'type'=>'raw',
             'value'=>$model->falla,
         ),
+		array(
+            'label'=>'Estado Actual',
+            'type'=>'raw',
+            'value'=>$estadoActual,
+        ),
+		array(
+            'label'=>'Imprimir',
+            'type'=>'raw',
+            'value'=>CHtml::link($model->id, array('orden/imprimir/'.$model->id), array('target'=>'_blank')),
+        ),
+	),
+));
+//$historial = $hist;
+?>
+<table class="detail-view">
+	<tr>
+		<td><?php echo $this->renderPartial('../historial/_form', array('model'=>$hist,'estadoActual'=>$list[0]['id'])); ?></td>
+	</tr>
+</table>
+
+<?php
+$hist->orden_id = $model->id;
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'orden-grid',
+	'dataProvider'=>$hist->search(),
+	'filter'=>$hist,
+	'columns'=>array(
+		array(
+			'name'=>'id',
+			'header'=>'#',
+			'value'=>$hist->id,
+			'htmlOptions'=>array('width'=>'40'),
+		),
+
+		array(
+			'name'=>'estado.nombre',
+			'header'=>'estado',
+			'value'=>'$data->getRelated(\'estado\')->estado',
+			'htmlOptions'=>array('width'=>'120'),
+		),
+		array(
+			'name'=>'fecha',
+			'header'=>'Fecha',
+			'value'=>$hist->fecha,
+			'htmlOptions'=>array('width'=>'120'),
+		),
+		array(
+			'name'=>'importe',
+			'header'=>'Importe',
+			'value'=>$hist->importe,
+			'htmlOptions'=>array('width'=>'120'),
+		),
+		'observacion',
 	),
 )); ?>
+

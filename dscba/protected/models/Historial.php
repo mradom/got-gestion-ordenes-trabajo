@@ -19,6 +19,20 @@
  */
 class Historial extends CActiveRecord
 {
+	
+	protected function beforeSave(){
+		if(parent::beforeSave()){
+			if($this->isNewRecord){
+				$this->fecha = new CDbExpression('NOW()');
+				$this->usr_id = Yii::app()->user->id;
+				//$this->orden_id = "20";
+			}
+			return parent::beforeSave();
+		}
+		return parent::beforeSave();
+		//return parent::beforeSave();
+		
+	}
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -52,6 +66,7 @@ class Historial extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, orden_id, estado_id, fecha, importe, observacion, fecha_entrega, usr_id', 'safe', 'on'=>'search'),
+			array('fecha','default','value'=>new CDbExpression('NOW()'),'setOnEmpty'=>false, 'on'=>'insert'),
 		);
 	}
 
@@ -109,4 +124,27 @@ class Historial extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function searchByOrderId($oid)
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('orden_id',$oid);
+		$criteria->compare('estado_id',$this->estado_id);
+		$criteria->compare('fecha',$this->fecha,true);
+		$criteria->compare('importe',$this->importe);
+		$criteria->compare('observacion',$this->observacion,true);
+		$criteria->compare('fecha_entrega',$this->fecha_entrega,true);
+		$criteria->compare('usr_id',$this->usr_id);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+	
+
 }

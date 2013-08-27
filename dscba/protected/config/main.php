@@ -16,9 +16,10 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.modules.cruge.components.*',
+        'application.modules.cruge.components.*',
 		'application.modules.cruge.extensions.crugemailer.*',
                 //'ext.giix-components.*', // giix components
+                'ext.eyui.*',
 	),
 
 	'modules'=>array(
@@ -29,9 +30,10 @@ return array(
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-                        /*'generatorPaths' => array(
-                            'ext.giix-core', // giix generators
-                        ),*/
+                        'generatorPaths' => array(
+                            //'ext.giix-core', // giix generators
+                            'application.gii',
+                        ),
 		),
 		
                 
@@ -54,9 +56,9 @@ return array(
                 'baseUrl'=>'http://coco.com/',
     
                  // NO OLVIDES PONER EN FALSE TRAS INSTALAR
-                 'debug'=>false,
+                 'debug'=>true,
                  'rbacSetupEnabled'=>true,
-                 'allowUserAlways'=>true,
+                 'allowUserAlways'=>false,
     
                 // MIENTRAS INSTALAS..PONLO EN: false
                 // lee mas abajo respecto a 'Encriptando las claves'
@@ -76,9 +78,9 @@ return array(
                 //		'afterLoginUrl'=>array('/site/welcome'),  ( !!! no olvidar el slash inicial / )
                 //		'afterLogoutUrl'=>array('/site/page','view'=>'about'),
                 //
-                'afterLoginUrl'=>'site/index',
-                'afterLogoutUrl'=>'../../',
-                'afterSessionExpiredUrl'=>null,
+                'afterLoginUrl'=>'../../orden/admin',
+                'afterLogoutUrl'=>'login',
+                'afterSessionExpiredUrl'=>'login',
     
                 // manejo del layout con cruge.
                 //
@@ -115,6 +117,7 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+                        'showScriptName'=>false,
 		),
 		
 		/*'db'=>array(
@@ -126,7 +129,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=ds',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -139,7 +142,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, rbac',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
@@ -180,8 +183,8 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'mradomar@gmail.com',
 	),
-        'defaultController'=>'cruge/ui/login',
+        'defaultController'=>'orden/admin',
         'language'=>'es',
 );

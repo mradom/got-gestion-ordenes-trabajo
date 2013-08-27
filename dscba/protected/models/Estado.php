@@ -6,12 +6,26 @@
  * The followings are the available columns in table 'estado':
  * @property integer $id
  * @property string $estado
- *
- * The followings are the available model relations:
- * @property Historial[] $historials
+ * @property string $descripcion
+ * @property integer $orden
  */
 class Estado extends CActiveRecord
 {
+	
+	protected function beforeSave(){
+		die("beforesave");
+		if(parent::beforeSave()){
+			if($this->isNewRecord){
+				die("es nuevo");
+				$this->fecha = new CDbExpression('NOW()');
+				$this->usr_id = Yii::app()->user->id;
+				$this->orden_id = "20";
+			}
+			return parent::beforeSave();
+		}
+		return parent::beforeSave();
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -39,10 +53,11 @@ class Estado extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('estado', 'required'),
-			array('estado', 'length', 'max'=>50),
+			array('orden', 'numerical', 'integerOnly'=>true),
+			array('estado, descripcion', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, estado', 'safe', 'on'=>'search'),
+			array('id, estado, descripcion, orden', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +69,6 @@ class Estado extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'historials' => array(self::HAS_MANY, 'Historial', 'estado_id'),
 		);
 	}
 
@@ -66,6 +80,8 @@ class Estado extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'estado' => 'Estado',
+			'descripcion' => 'Descripcion',
+			'orden' => 'Orden',
 		);
 	}
 
@@ -82,6 +98,8 @@ class Estado extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('descripcion',$this->descripcion,true);
+		$criteria->compare('orden',$this->orden);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
