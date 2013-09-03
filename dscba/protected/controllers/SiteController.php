@@ -37,6 +37,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+		//$this->layout='//layouts/inicial'; 
 		$this->render('index');
 	}
 
@@ -45,13 +46,19 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-		if($error=Yii::app()->errorHandler->error)
-		{
-			if(Yii::app()->request->isAjaxRequest)
-				echo $error['message'];
-			else
-				$this->render('error', $error);
-		}
+		/*if(Yii::app()->user->id == 2){
+			$this->redirect("/cruge/ui/login");
+			exit();
+		}else{*/
+			if($error=Yii::app()->errorHandler->error)
+			{
+				if(Yii::app()->request->isAjaxRequest)
+					echo $error['message'];
+				else
+					$this->render('error', $error);
+			}
+		//}
+		//print_r(Yii::app()->errorHandler->error);
 	}
 
 	/**

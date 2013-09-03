@@ -124,9 +124,18 @@ class SucursalController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Sucursal');
+		/*$dataProvider=new CActiveDataProvider('Sucursal');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+		));*/
+
+		$model=new Sucursal('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Sucursal']))
+			$model->attributes=$_GET['Sucursal'];
+
+		$this->render('admin',array(
+			'model'=>$model,
 		));
 	}
 
@@ -141,6 +150,18 @@ class SucursalController extends Controller
 			$model->attributes=$_GET['Sucursal'];
 
 		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionEmpleados()
+	{
+		$model=new Sucursal('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Sucursal']))
+			$model->attributes=$_GET['Sucursal'];
+
+		$this->render('empleados',array(
 			'model'=>$model,
 		));
 	}

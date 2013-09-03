@@ -12,6 +12,8 @@
  */
 class Sucursal extends CActiveRecord
 {
+	/*public $iduser;
+	public $username;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -55,6 +57,7 @@ class Sucursal extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'ordens' => array(self::HAS_MANY, 'Orden', 'suc_id'),
+			'usuario' => array(self::HAS_MANY, 'usuario', 'suc_id'),
 		);
 	}
 
@@ -85,6 +88,27 @@ class Sucursal extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+		));
+	}
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function searchBySql()
+	{
+
+		$count=Yii::app()->db->createCommand('select count(*) from sucursal as s inner join usuario as u on u.suc_id = s.id inner join cruge_user as cu on cu.iduser = u.cruge_id')->queryScalar();
+		$sql='select  s.*, cu.*  from sucursal as s inner join usuario as u on u.suc_id = s.id inner join cruge_user as cu on cu.iduser = u.cruge_id';
+		return new CSqlDataProvider($sql, array(
+		    'totalItemCount'=>$count,
+		    'sort'=>array(
+		        'attributes'=>array(
+		             'id',
+		        ),
+		    ),
+		    'pagination'=>array(
+		        'pageSize'=>20,
+		    ),
 		));
 	}
 }

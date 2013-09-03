@@ -10,6 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Listar Sucursal', 'url'=>array('index')),
 	array('label'=>'Crear Sucursal', 'url'=>array('create')),
+	//array('label'=>'Empleados', 'url'=>array('empleados')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
