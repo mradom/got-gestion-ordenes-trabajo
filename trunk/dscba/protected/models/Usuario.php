@@ -53,14 +53,16 @@ class Usuario extends CActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	/*public function relations()
+	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'historials' => array(self::HAS_MANY, 'Historial', 'usr_id'),
+			/*'historials' => array(self::HAS_MANY, 'Historial', 'usr_id'),
 			'ordens' => array(self::HAS_MANY, 'Orden', 'uid'),
 			'cruge' => array(self::BELONGS_TO, 'CrugeUser', 'cruge_id'),
+			'sucursal' => array(self::HAS_ONE, 'Sucursal', 'id'),*/
+			'cruge' => array(self::HAS_ONE, 'CrugeUser', 'iduser'),
 			'sucursal' => array(self::HAS_ONE, 'Sucursal', 'id'),
 		);
 	}
