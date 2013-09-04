@@ -36,6 +36,7 @@
 				array('label'=>'Ordenes', 'url'=>array('/orden/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Sucursal', 'url'=>array('/sucursal'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
 				array('label'=>'Reportes', 'url'=>array('/Reportes'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
+				array('label'=>'Repuestos', 'url'=>array('/Repuesto'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
 				array('label'=>'Administrar Usuarios', 'url'=>Yii::app()->user->ui->userManagementAdminUrl, 'visible'=>Yii::app()->user->checkAccess('superAdmin'),),
 				array('label'=>'Login'
 					, 'url'=>Yii::app()->user->ui->loginUrl
