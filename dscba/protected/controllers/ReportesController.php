@@ -15,21 +15,60 @@ class ReportesController extends Controller
 		));
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	public function actionTerminados()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		$orden = new orden();
+		$orden->estado_id = 5;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('orden'=>$orden));
 	}
 
-	public function actions()
+	public function actionAprobada()
+	{
+		$orden = new orden();
+		$orden->estado_id = 3;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('orden'=>$orden));
+	}
+
+	public function actionEspAprobacion()
+	{
+		$orden = new orden();
+		$orden->estado_id = 2;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('orden'=>$orden));
+	}
+
+	public function actionOtros()
+	{
+		$this->layout='//layouts/vacio'; 
+		$this->render('otros',array('model'=>"test",));
+	}
+
+	public function actionPendiente()
+	{
+		$orden = new orden();
+		$orden->estado_id = 1;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('orden'=>$orden));
+	}
+
+	public function actionReparacion()
+	{
+		$orden = new orden();
+		$orden->estado_id = 4;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('orden'=>$orden));
+	}
+
+	// Uncomment the following methods and override them if needed
+	
+	public function filters()
+	{
+		return array(array('CrugeAccessControlFilter'));
+	}
+
+	/*public function actions()
 	{
 		// return external action classes, e.g.:
 		return array(

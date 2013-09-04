@@ -3,7 +3,7 @@
 		<td>
 			<table width="100%" border=0 cellpadding=0 cellspacing=0>
 				<tr>
-					<td align="center" width="35%"><img src="../../../images/logo_print.jpg"></td>
+					<td align="center" width="35%"><img src="../../images/logo_print.jpg"></td>
 					<td align="center"><b>Cliente</b><br><span class="x"><b>X</b></span><br><span class="leyenda">Documento<br>no valido como factura</span><br>Belgrano 94 - 5000 Córdoba<br>Tel: 0351 - 4237572</td>
 					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo $model->id; ?></h3><br>20/08/2013</td>
 				</tr>
@@ -44,7 +44,7 @@
 		<td>
 			<table width="100%" border=0 cellpadding=0 cellspacing=0>
 				<tr>
-					<td align="center" width="35%"><img src="../../../images/logo_print.jpg"></td>
+					<td align="center" width="35%"><img src="../../images/logo_print.jpg"></td>
 					<td align="center"><b>Laboratorio</b><br><span class="x"><b>X</b></span><br><span class="leyenda">Documento<br>no valido como factura</span><br>Belgrano 94 - 5000 Córdoba<br>Tel: 0351 - 4237572</td>
 					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo $model->id; ?></h3><br>20/08/2013</td>
 				</tr>

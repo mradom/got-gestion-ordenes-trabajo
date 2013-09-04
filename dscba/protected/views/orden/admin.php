@@ -91,7 +91,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
 			'name'=>'u.uid',
 			'header'=>'Atendido Por',
-			'value'=>'$data->getRelated(\'u\')->uid',
+			'value' => 'Yii::app()->user->um->loadUserById($data->getRelated(\'u\')->uid,true)->username;'
 		),
 		array(
 			'name'=>'suc.nombre',

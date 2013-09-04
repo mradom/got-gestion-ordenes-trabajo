@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
 <style type="text/css">
 	@media print{
 		size: A4 portrait;

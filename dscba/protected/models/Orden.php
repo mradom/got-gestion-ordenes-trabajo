@@ -26,6 +26,7 @@
  */
 class Orden extends CActiveRecord
 {
+	public $estado_id;
 	
 	protected function afterSave(){
 		$historial = new Historial();
@@ -139,6 +140,32 @@ class Orden extends CActiveRecord
 		$criteria->compare('suc_id',$this->suc_id);
 		$criteria->compare('mar_id',$this->mar_id);
 		$criteria->compare('uid',$this->uid);
+		
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'sort' => array('defaultOrder' => 'id desc'),
+			'pagination'=>array('pageSize'=>25),
+		));
+	}
+
+	public function searchReport()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+		
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('esn',$this->esn,true);
+		$criteria->compare('modelo',$this->modelo,true);
+		//$criteria->compare('accesorios',$this->accesorios,true);
+		//$criteria->compare('falla',$this->falla,true);
+		$criteria->compare('apa_id',$this->apa_id);
+		$criteria->compare('cli_id',$this->cli_id);
+		$criteria->compare('suc_id',$this->suc_id);
+		$criteria->compare('mar_id',$this->mar_id);
+		$criteria->compare('uid',$this->uid);
+		$criteria->addCondition('id IN (SELECT oid FROM estado_actual WHERE eid = '.$this->estado_id.')');
 		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
