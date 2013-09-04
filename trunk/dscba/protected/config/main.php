@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Digital Service - Gestion de Ordenes de Trabajo',
     'defaultController'=>'site/index',
     'language'=>'es',
 	// preloading 'log' component
@@ -76,7 +76,7 @@ return array(
             //		'afterLogoutUrl'=>array('/site/page','view'=>'about'),
             //
             'afterLoginUrl'=>'../../orden/admin',
-            'afterLogoutUrl'=>'../../',
+            'afterLogoutUrl'=>'',
             'afterSessionExpiredUrl'=>'',
 
             // manejo del layout con cruge.
@@ -131,6 +131,14 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 		),
+
+        /*'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=omrad_got',
+            'emulatePrepare' => true,
+            'username' => 'omrad',
+            'password' => '30234286',
+            'charset' => 'utf8',
+        ),*/
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
