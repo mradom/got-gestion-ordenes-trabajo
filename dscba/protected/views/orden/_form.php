@@ -27,13 +27,13 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'apa_id'); ?>
-		<?php echo $form->dropDownList($model,'apa_id', CHtml::listData(aparato::model()->findAll(), 'id', 'aparato')); ?>
+		<?php echo $form->dropDownList($model,'apa_id', CHtml::listData(Aparato::model()->findAll(), 'id', 'aparato')); ?>
 		<?php echo $form->error($model,'apa_id'); ?>
 	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'mar_id'); ?>
-		<?php echo $form->dropDownList($model,'mar_id', CHtml::listData(marca::model()->findAll(), 'id', 'marca')); ?>
+		<?php echo $form->dropDownList($model,'mar_id', CHtml::listData(Marca::model()->findAll(), 'id', 'marca')); ?>
 		<?php echo $form->error($model,'mar_id'); ?>
 	</div>
 	

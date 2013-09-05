@@ -4,12 +4,46 @@
 /* @var $form CActiveForm */
 Yii::app()->clientScript->registerScript('get_repuesto', "
 $('#get_repuesto').click(function(){
-	//$( '#repuesto_dialog' ).load('".Yii::app()->request->baseUrl."/repuesto/ajax/')
-	$( '#repuesto_dialog' ).load('".Yii::app()->createUrl("repuesto/ajax/", array("oid"=>$_GET['id']))."');
-	$( '#repuesto_dialog' ).dialog( 'open' );
+	jQuery( '#get_repuesto_dialog' ).load('".Yii::app()->createUrl("repuesto/ajax/", array("oid"=>$_GET['id']))."');
+	jQuery( '#get_repuesto_dialog' ).dialog( 'open' );
 	return false;
 });
 ");
+
+
+$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+	'id'=>'get_repuesto_dialog',
+	// additional javascript options for the dialog plugin
+	'options'=>array(
+		'title'=>'Dialog box 1',
+		'height'=>'500',
+		'width'=> '800',
+		'autoOpen'=>false,
+		'modal'=>true,
+		'dialogClass' => 'none',
+		'show'=> array(
+			'effect'=> 'clip',
+			'duration'=> '500',
+			),
+        'buttons'=>array(
+            'OK'=>'js:function(){alert("OK");}',
+            'Cerrar'=>'js:function(){$(this).dialog("close");$(this).html("")}',
+        ),
+        'close' => 'jQuery(this).html("");',
+	),
+));
+
+
+$this->endWidget('zii.widgets.jui.CJuiDialog');
+
+
+/*echo CHtml::link('open dialog', '#', array(
+	'onclick'=>
+		'jQuery("#get_repuesto_dialog" ).load("'.Yii::app()->createUrl("repuesto/ajax/", array("oid"=>$_GET['id'])).'");
+		jQuery("#get_repuesto_dialog").dialog("open"); 
+		return false;',
+		));*/
+
 ?>
 <div class="form">
 
@@ -30,7 +64,7 @@ $model->orden_id = $_GET['id'];
 	<div class="rowlittle">
 		<?php echo $form->labelEx($model,'estado_id'); ?>
 		<?php echo $form->dropDownList($model,'estado_id',
-		CHtml::listData(estado::model()->findAllBySql('select id, estado from estado where id >= '.$estadoActual.' order by orden'),
+		CHtml::listData(estado::model()->findAllBySql('select id, estado from estado where id > '.$estadoActual.' order by orden'),
 		'id', 'estado'), array('disabled'=>$estadoActual == '6' or $estadoActual == '7' ? true : false)); ?>
 		<?php echo $form->error($model,'estado_id'); ?>
 	</div>
@@ -38,19 +72,22 @@ $model->orden_id = $_GET['id'];
 	if ($estadoActual == 4){
 	?>
 	<div class="row">
-		<?php echo CHtml::link('Usar Repuesto','#',array('id'=>'get_repuesto')); ?>
+		<?php echo CHtml::link('Usar Repuesto','#',array('id'=>"get_repuesto")); ?>
 	</div>
 	
 	<?php
 	}
 	?>
-
+	<?php if ($estadoActual == 1) {?>
 	<div class="rowlittle">
+
 		<?php echo $form->labelEx($model,'importe'); ?>
-		<?php echo $form->textField($model,'importe', array('readonly'=> $estadoActual == '6' or $estadoActual == '7' ? true : false)); ?>
+		<?php echo $form->textField($model,'importe', array('readonly'=> $estadoActual === '2'? true : false)); ?>
 		<?php echo $form->error($model,'importe'); ?>
 	</div>
+	<?php } ?>
 	
+	<?php if ($estadoActual == 2) {?>
 	<div class="rowlittle">
 		<?php echo $form->labelEx($model,'fecha_entrega'); ?>
 		       <?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -60,9 +97,9 @@ $model->orden_id = $_GET['id'];
                'htmlOptions' => array(
                        'size' => '10',         // textField size
                        'maxlength' => '10',    // textField maxlength
-		       'readonly' => $estadoActual == '6' or $estadoActual == '7' ? true : false,
                ),
                'options' => array(
+						'disabled' => $estadoActual == '3'? true : false,
                        'showOn' => 'both',             // also opens with a button
                        'dateFormat' => 'yy-mm-dd',     // format of "2012-12-25"
                        'showOtherMonths' => true,      // show dates in other months
@@ -77,6 +114,7 @@ $model->orden_id = $_GET['id'];
        )); ?>
 		<?php echo $form->error($model,'fecha_entrega'); ?>
 	</div>
+	<?php } ?>
 
 	<div class="rowlittle">
 		<?php echo $form->labelEx($model,'observacion'); ?>
@@ -92,9 +130,12 @@ $model->orden_id = $_GET['id'];
 
 </div><!-- form -->
 
-<script>
-  $(function() {
-    $( "#repuesto_dialog" ).dialog({
+<div id="repuesto_dialog" title="Usar Repuesto"></div>
+
+
+<!-- 
+  jQuery(function() {
+    jQuery( "#repuesto_dialog" ).dialog({
 	dialogClass: "none",
 	autoOpen: false,
 	show: {
@@ -110,13 +151,12 @@ $model->orden_id = $_GET['id'];
 	modal: true,
 	buttons: {
 		 Cerrar: function() {
-			$( this ).dialog( "close" );
+			jQuery( this ).dialog( "close" );
 		}
 	},
 	close: function() {
-		$(this).html("");
+		jQuery(this).html("");
 	},
     });
   });
-</script>
-<div id="repuesto_dialog" title="Usar Repuesto"></div>
+</script> -->
