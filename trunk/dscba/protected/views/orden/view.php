@@ -121,6 +121,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>$hist->importe,
 			'htmlOptions'=>array('width'=>'120'),
 		),
+
+		array(
+			'name'=>'fecha_entrega',
+			'header'=>'Fecha de Entrega',
+			'value'=>$hist->fecha_entrega,
+			'type'=>'date',
+			'htmlOptions'=>array('width'=>'120'),
+		),
 		'observacion',
 	),
 )); ?>

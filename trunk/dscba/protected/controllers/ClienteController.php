@@ -68,7 +68,7 @@ class ClienteController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['Cliente']))
 		{
 			$_POST['Cliente']['fecha'] = new CDbExpression('NOW()');

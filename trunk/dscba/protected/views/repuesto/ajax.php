@@ -50,8 +50,8 @@ $val_success_message = ($model->isNewRecord) ?'Repuesto usado.':'Repuesto usado.
 <script type="text/javascript">
 //document ready
 $(function() {
-$( '#repuesto_dialog table' ).css( 'color', 'black' );
-$( '#repuesto_dialog table .fan_usar' ).css( 'color', 'black' );
+$( '#get_repuesto_dialog table' ).css( 'color', 'black' );
+$( '#get_repuesto_dialog table .fan_usar' ).css( 'color', 'black' );
     //declaring the function that will bind behaviors to the gridview buttons,
     //also applied after an ajax update of the gridview.(see 'afterAjaxUpdate' attribute of gridview).
 $. bind_crud= function(){
