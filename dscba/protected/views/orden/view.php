@@ -92,7 +92,7 @@ $this->widget('zii.widgets.CDetailView', array(
 <?php
 $hist->orden_id = $model->id;
 $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'orden-grid',
+	'id'=>'historial-grid',
 	'dataProvider'=>$hist->search(),
 	'filter'=>$hist,
 	'columns'=>array(
@@ -102,7 +102,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>$hist->id,
 			'htmlOptions'=>array('width'=>'40'),
 		),
-
+		array(
+			'name'=>'u.cruge_id',
+			'header'=>'Usuario',
+			'value' => 'Yii::app()->user->um->loadUserById($data->getRelated(\'u\')->cruge_id,true)->username;'
+			//'value' => '$data->getRelated(\'u\')->cruge_id',
+		),
 		array(
 			'name'=>'estado.nombre',
 			'header'=>'estado',

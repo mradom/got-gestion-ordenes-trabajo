@@ -63,9 +63,13 @@ $model->orden_id = $_GET['id'];
 	<?php echo $form->hiddenField($model,'orden_id'); ?>
 	<div class="rowlittle">
 		<?php echo $form->labelEx($model,'estado_id'); ?>
-		<?php echo $form->dropDownList($model,'estado_id',
-		CHtml::listData(estado::model()->findAllBySql('select id, estado from estado where id > '.$estadoActual.' order by orden'),
-		'id', 'estado'), array('disabled'=>$estadoActual == '6' or $estadoActual == '7' ? true : false)); ?>
+		<?php if (!Yii::app()->user->checkAccess('superAdmin')) { ?>
+			<?php echo $form->dropDownList($model,'estado_id',
+			CHtml::listData(estado::model()->findAllBySql('select id, estado from estado where id >= '.$estadoActual.' order by orden'),
+			'id', 'estado'), array('disabled'=>$estadoActual == '6' or $estadoActual == '7' ? true : false)); ?>
+		<?php }else{ ?>
+			<?php echo $form->dropDownList($model,'estado_id',CHtml::listData(estado::model()->findAll(),'id', 'estado'),array('options' => array($estadoActual=>array('selected'=>true)))); ?>
+		<?php } ?>
 		<?php echo $form->error($model,'estado_id'); ?>
 	</div>
 	<?php
