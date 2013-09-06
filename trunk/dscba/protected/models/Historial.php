@@ -80,6 +80,7 @@ class Historial extends CActiveRecord
 		return array(
 			'estado' => array(self::BELONGS_TO, 'Estado', 'estado_id'),
 			'orden' => array(self::BELONGS_TO, 'Orden', 'orden_id'),
+			'u' => array(self::BELONGS_TO, 'Usuario', 'usr_id'),
 		);
 	}
 
@@ -122,6 +123,8 @@ class Historial extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array('defaultOrder' => 'id desc'),
+			'pagination'=>array('pageSize'=>25),
 		));
 	}
 	

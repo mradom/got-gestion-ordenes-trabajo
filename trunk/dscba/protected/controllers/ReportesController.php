@@ -17,7 +17,7 @@ class ReportesController extends Controller
 
 	public function actionTerminados()
 	{
-		$orden = new orden();
+		$orden = new Orden();
 		$orden->estado_id = 5;
 		$this->layout='//layouts/vacio'; 
 		$this->render('reporte',array('orden'=>$orden));
@@ -25,7 +25,7 @@ class ReportesController extends Controller
 
 	public function actionAprobada()
 	{
-		$orden = new orden();
+		$orden = new Orden();
 		$orden->estado_id = 3;
 		$this->layout='//layouts/vacio'; 
 		$this->render('reporte',array('orden'=>$orden));
@@ -33,7 +33,7 @@ class ReportesController extends Controller
 
 	public function actionEspAprobacion()
 	{
-		$orden = new orden();
+		$orden = new Orden();
 		$orden->estado_id = 2;
 		$this->layout='//layouts/vacio'; 
 		$this->render('reporte',array('orden'=>$orden));
@@ -47,7 +47,7 @@ class ReportesController extends Controller
 
 	public function actionPendiente()
 	{
-		$orden = new orden();
+		$orden = new Orden();
 		$orden->estado_id = 1;
 		$this->layout='//layouts/vacio'; 
 		$this->render('reporte',array('orden'=>$orden));
@@ -55,7 +55,7 @@ class ReportesController extends Controller
 
 	public function actionReparacion()
 	{
-		$orden = new orden();
+		$orden = new Orden();
 		$orden->estado_id = 4;
 		$this->layout='//layouts/vacio'; 
 		$this->render('reporte',array('orden'=>$orden));
