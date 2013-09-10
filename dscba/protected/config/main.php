@@ -11,7 +11,10 @@ return array(
     'defaultController'=>'site/index',
     'language'=>'es',
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array(
+        'log', 
+        'bootstrap',
+    ),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -32,7 +35,10 @@ return array(
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-            'generatorPaths' => array('application.gii',),
+            'generatorPaths' => array(
+                'application.gii',
+                'bootstrap.gii',
+                ),
 		),
 
         /* CRUGE */
@@ -107,6 +113,13 @@ return array(
 			'allowAutoLogin'=>true,
             'loginUrl' => array('/cruge/ui/login'),
 		),
+        'fixture' => array(
+            'class' => 'system.test.CDbFixtureManager',
+        ),
+        'bootstrap' => array(
+            'class' => 'ext.bootstrap.components.Bootstrap',
+            'responsiveCss' => true,
+        ),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
