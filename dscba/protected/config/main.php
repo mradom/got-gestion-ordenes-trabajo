@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-    'defaultController'=>'site/index',
+    'defaultController'=>'cruge/ui/login',
     'language'=>'es',
 	// preloading 'log' component
 	'preload'=>array(
@@ -81,7 +81,7 @@ return array(
             //		'afterLoginUrl'=>array('/site/welcome'),  ( !!! no olvidar el slash inicial / )
             //		'afterLogoutUrl'=>array('/site/page','view'=>'about'),
             //
-            'afterLoginUrl'=>'../../orden/admin',
+            'afterLoginUrl'=>'orden/admin',
             'afterLogoutUrl'=>'',
             'afterSessionExpiredUrl'=>'',
 

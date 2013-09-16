@@ -23,28 +23,6 @@
 </head>
 <body>
 <div class="container" id="page">
-
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
-
-	<div id="mainmenu">
-		<?php 
-		/* MENU  DE SUPERADMIN */
-			$this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Login'
-					, 'url'=>Yii::app()->user->ui->loginUrl
-					, 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')'
-					, 'url'=>Yii::app()->user->ui->logoutUrl
-					, 'visible'=>!Yii::app()->user->isGuest),
-			),
-		)); 
-
-
-		?>
-	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
