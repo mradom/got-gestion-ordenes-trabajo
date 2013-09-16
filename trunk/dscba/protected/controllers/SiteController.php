@@ -1,5 +1,4 @@
-	<?php
-
+<?php
 class SiteController extends Controller
 {
 	public function filters()
@@ -35,6 +34,11 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+	
+		//$this->redirect('cruge/ui/login');
+		//$this->redirect(array('site/index','id'=>100));
+		//Yii::app()->controller->redirect('cruge/ui/login');
+		//Yii::app()->request->redirect('cruge/ui/login');
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		//$this->layout='//layouts/inicial'; 
