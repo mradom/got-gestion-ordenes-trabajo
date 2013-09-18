@@ -41,7 +41,7 @@
 	</div>
 
 	<?php
-		//	si el componente CrugeConnector existe lo usa:
+		//	si el componente CrugeConnector existe lo usa: omar
 		//
 		if(Yii::app()->getComponent('crugeconnector') != null){
 		if(Yii::app()->crugeconnector->hasEnabledClients){ 
