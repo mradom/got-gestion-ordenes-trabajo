@@ -7,7 +7,7 @@ class SiteController extends Controller
 	}
 	
 	/**
-	 * Declares class-based actions.
+	 * Declares class-based actions. omar ............ asasd
 	 */
 	public function actions()
 	{
