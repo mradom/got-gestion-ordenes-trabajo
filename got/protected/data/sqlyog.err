@@ -1,0 +1,41 @@
+Query:
+CREATE TABLE `cruge_authassignment` (
+`userid` int(11) NOT NULL,
+`bizrule` text,
+`data` text,
+`itemname` varchar(64) NOT NULL,
+PRIMARY KEY (`userid`,`itemname`),
+KEY `fk_cruge_authassignment_cruge_authitem1` (`itemname`),
+KEY `fk_cruge_authassignment_user` (`userid`),
+CONSTRAINT `fk_cruge_authassignment_cruge_authitem1` FOREIGN KEY (`itemname`) REFERENCES `cruge_authitem` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT `fk_cruge_authassignment_user` FOREIGN KEY (`userid`) REFERENCES `cruge_user` (`iduser`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+Error occured at:2013-08-12 08:30:28
+Line no.:8937
+Error Code: 1215 - Cannot add foreign key constraint
+Query:
+CREATE TABLE `aparato` (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id del aparato',
+`aparato` varchar(50) NOT NULL COMMENT 'Nombre del aparato',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COMMENT='Contenedor de los tipos de aparatos'
+
+Error occured at:2013-08-12 14:28:01
+Line no.:21
+Error Code: 1289 - The 'InnoDB' feature is disabled; you need MySQL built with 'InnoDB' to have it working
+Query:
+END */$$
+DELIMITER ;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+Error occured at:2013-08-20 08:44:06
+Line no.:394
+Error Code: 1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END */$$
+DELIMITER ;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIG' at line 1
