@@ -1,4 +1,5 @@
-<?php
+	<?php
+
 class SiteController extends Controller
 {
 	public function filters()
@@ -7,7 +8,7 @@ class SiteController extends Controller
 	}
 	
 	/**
-	 * Declares class-based actions. omar ............ asasd
+	 * Declares class-based actions.
 	 */
 	public function actions()
 	{
@@ -34,14 +35,16 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-	
-		//$this->redirect('cruge/ui/login');
-		//$this->redirect(array('site/index','id'=>100));
-		//Yii::app()->controller->redirect('cruge/ui/login');
-		//Yii::app()->request->redirect('cruge/ui/login');
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		//$this->layout='//layouts/inicial'; 
+		/*if (Yii::app()->user->isGuest) {
+			$this->redirect(array(Yii::app()->getComponents()['user']->loginUrl[0]));
+			break;
+		}else{
+			$this->redirect(array('orden/admin'));
+			break;
+		}*/
 		$this->render('index');
 	}
 
@@ -58,8 +61,9 @@ class SiteController extends Controller
 			{
 				if(Yii::app()->request->isAjaxRequest)
 					echo $error['message'];
-				else
+
 					$this->render('error', $error);
+					//$this->redirect(array(Yii::app()->getComponents()['user']->loginUrl[0]));
 			}
 		//}
 		//print_r(Yii::app()->errorHandler->error);

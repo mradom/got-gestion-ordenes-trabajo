@@ -4,17 +4,15 @@
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
 // This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here. Omar
+// CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'GOT - Digital Service',
     'defaultController'=>'cruge/ui/login',
     'language'=>'es',
+    //'theme'=>'bootstrap',
 	// preloading 'log' component
-	'preload'=>array(
-        'log', 
-        'bootstrap',
-    ),
+	'preload'=>array('log'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -22,6 +20,9 @@ return array(
 		'application.components.*',
         'application.modules.cruge.components.*',
 		'application.modules.cruge.extensions.crugemailer.*',
+        //'ext.bootstrap-theme.widgets.*',
+        //'ext.bootstrap-theme.helpers.*',
+        //'ext.bootstrap-theme.behaviors.*',
                 //'ext.giix-components.*', // giix components
         'ext.eyui.*',
         'ext.*',
@@ -35,10 +36,7 @@ return array(
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-            'generatorPaths' => array(
-                'application.gii',
-                'bootstrap.gii',
-                ),
+            'generatorPaths' => array('application.gii',),
 		),
 
         /* CRUGE */
@@ -111,15 +109,8 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-            'loginUrl' => array('/cruge/ui/login'),
+            'loginUrl' => array('cruge/ui/login'),
 		),
-        'fixture' => array(
-            'class' => 'system.test.CDbFixtureManager',
-        ),
-        'bootstrap' => array(
-            'class' => 'ext.bootstrap.components.Bootstrap',
-            'responsiveCss' => true,
-        ),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -137,21 +128,21 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
+		/*'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=ds',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-		),
+		),*/
 
-        /*'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=omrad_got',
+        'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=got',
             'emulatePrepare' => true,
-            'username' => 'omrad',
-            'password' => '30234286',
+            'username' => 'root',
+            'password' => '',
             'charset' => 'utf8',
-        ),*/
+        ),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -195,7 +186,9 @@ return array(
                 'debug' => true,
         ),
         'format' => array(
-                'datetimeFormat'=>"d M, Y h:m:s a",
+                'numberFormat'  => [ 'decimals' => 2, 'decimalSeparator' => '.', 'thousandSeparator' => false ],
+                'datetimeFormat'=>"d/m/Y H:m",
+                'dateFormat'    => 'd/m/Y',
         ),
 	),
 

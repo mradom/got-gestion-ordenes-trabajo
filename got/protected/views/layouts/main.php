@@ -31,9 +31,9 @@
 		/* MENU  DE SUPERADMIN */
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
+				array('label'=>'Ordenes', 'url'=>array('/orden/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Clientes', 'url'=>array('/cliente'),    'visible'=>!Yii::app()->user->isGuest),
 				//array('label'=>'Crear Orden', 'url'=>array('/cliente'), 'visible'=>!Yii::app()->user->isGuest),//Yii::app()->user->checkAccess('superAdmin')),
-				array('label'=>'Ordenes', 'url'=>array('/orden/admin'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Sucursal', 'url'=>array('/sucursal'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
 				array('label'=>'Reportes', 'url'=>array('/Reportes'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
 				array('label'=>'Repuestos', 'url'=>array('/Repuesto'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),
@@ -61,7 +61,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by PHPGroup.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by <a href='http://www.phpgroup.com.ar/' target='_blank'>PHPGroup</a> - <a target='_blank' href='https://ar.linkedin.com/in/omarmrad
+'>Omar Mrad</a><br/>
 		Todos los derechos reservados.<br/>
 		<?php //echo Yii::powered(); ?>
 	</div><!-- footer -->

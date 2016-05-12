@@ -92,7 +92,7 @@ $this->widget('zii.widgets.CDetailView', array(
 <?php
 $hist->orden_id = $model->id;
 $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'historial-grid',
+	'id'=>'orden-grid',
 	'dataProvider'=>$hist->search(),
 	'filter'=>$hist,
 	'columns'=>array(
@@ -118,6 +118,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'name'=>'fecha',
 			'header'=>'Fecha',
 			'value'=>$hist->fecha,
+			'type'   => 'datetime',
+			//'value'=>Yii::app()->dateFormatter->format("d MMM y", strtotime($hist->fecha)),
 			'htmlOptions'=>array('width'=>'120'),
 		),
 		array(

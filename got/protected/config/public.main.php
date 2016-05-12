@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'DIGITAL SERVICE - GOT - Gestion de Ordenes de Trabajo',
+    'name'=>'My Web Application',
 
     // preloading 'log' component
     'preload'=>array('log'),

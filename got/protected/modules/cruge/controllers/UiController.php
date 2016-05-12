@@ -198,7 +198,8 @@ class UiController extends Controller
 			return;
 		}else{
 			
-        	$this->redirect(Yii::app()->user->ui->loginurl);
+        	//$this->redirect(Yii::app()->user->ui->loginurl);
+            $this->redirect(Yii::app()->homeUrl);
 		}
     }
 

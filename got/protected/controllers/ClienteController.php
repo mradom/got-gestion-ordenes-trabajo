@@ -68,13 +68,13 @@ class ClienteController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
-		
+
 		if(isset($_POST['Cliente']))
 		{
 			$_POST['Cliente']['fecha'] = new CDbExpression('NOW()');
 			$model->attributes=$_POST['Cliente'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('orden/crear','id'=>$model->id));
 		}
 
 		$this->render('create',array(

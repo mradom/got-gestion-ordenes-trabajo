@@ -123,8 +123,6 @@ class Historial extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'sort' => array('defaultOrder' => 'id desc'),
-			'pagination'=>array('pageSize'=>25),
 		));
 	}
 	

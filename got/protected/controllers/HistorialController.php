@@ -73,14 +73,31 @@ class HistorialController extends Controller
 			//$_POST['Historial']['orden_id'] = "20";
 			$_POST['Historial']['fecha'] = new CDbExpression('NOW()');
 			$model->attributes=$_POST['Historial'];
+
 			if($model->save()){
+				if ($_POST["Historial"]["estado_id"] == 2) {
+					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." espera su aprobacion. Tarea:Reparacion lente.Importe: $ ".$_POST["Historial"]["importe"]." DigitalService";
+					try {  
+					    $client=@new SoapClient('http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=mrad&clave=mrad280&tos=3516102103&texto='.$mensaje);	
+					} catch (Exception $e) {  
+					    echo $e->getMessage(); 
+					}
+				}
+
+				if ($_POST["Historial"]["estado_id"] == 5) {
+					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." esta lista para retirar. DigitalService";
+					$client=new SoapClient('http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=mrad&clave=mrad280&tos=3516102103&texto='.$mensaje);	
+				}
 				$this->redirect(array('/orden/'.$model->orden_id));
+				//die($client);
+				//echo $client->getPrice('GOOGLE');
+				//$this->redirect(array('/orden/SMS/'.$model->orden_id));
 			}else {
 				echo "<pre>";
 				print_r($this);
 				print_r($model->getErrors());
 				echo "</pre>";
-				die("HISTORIALCONTROLADOR.php CREATE");				
+				die("HISTORIALCONTROLADOR.php CREATE");
 			}
 		}
 

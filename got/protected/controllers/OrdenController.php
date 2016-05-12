@@ -236,4 +236,8 @@ class OrdenController extends Controller
 			'suc'=>$sucursal,
 		));
 	}
+
+	public function actionSMS(){
+		die("Enviar SMS");
+	}
 }

@@ -33,7 +33,7 @@
 
 	<div class="row buttons">
 		<?php Yii::app()->user->ui->tbutton(CrugeTranslator::t('logon', "Login")); ?>
-		<?php //echo Yii::app()->user->ui->passwordRecoveryLink; ?>
+		<?php echo Yii::app()->user->ui->passwordRecoveryLink; ?>
 		<?php
 			if(Yii::app()->user->um->getDefaultSystem()->getn('registrationonlogin')===1)
 				echo Yii::app()->user->ui->registrationLink;
@@ -41,7 +41,7 @@
 	</div>
 
 	<?php
-		//	si el componente CrugeConnector existe lo usa: omar
+		//	si el componente CrugeConnector existe lo usa:
 		//
 		if(Yii::app()->getComponent('crugeconnector') != null){
 		if(Yii::app()->crugeconnector->hasEnabledClients){ 

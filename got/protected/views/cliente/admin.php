@@ -45,7 +45,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		array(
+		'id',
+		'dni',
+		'apellido',
+		'nombre',
+		/*array(
 			'name'=>'id',
 			'header'=>'#',
 			'value'=>$model->id,
@@ -66,7 +70,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'nombre',
 			'header'=>'Nombre',
 			'value'=>$model->nombre,
-		),
+		),*/
 		//'domicilio',
 		'telefono',
 		'email',
@@ -76,12 +80,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'fecha',
 		'observacion',
 		*/
-	    array(
-	        'class'=>'CLinkColumn',
-	        'label'=>'Lote',
-	        'urlExpression'=>'"lote/crear/".$data->id',
-	        'header'=>'Por Lote'
-	    ),
 		array(
 			'class'=>'CButtonColumn',
 			'header'=>'Acciones',
