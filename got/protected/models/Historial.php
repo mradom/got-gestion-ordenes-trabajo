@@ -24,8 +24,7 @@ class Historial extends CActiveRecord
 		if(parent::beforeSave()){
 			if($this->isNewRecord){
 				$this->fecha = new CDbExpression('NOW()');
-				$this->usr_id = Yii::app()->user->id;
-				//$this->orden_id = "20";
+				$this->usr_id = isset(Yii::app()->user->id) ? Yii::app()->user->id : "1";
 			}
 			return parent::beforeSave();
 		}
@@ -120,6 +119,8 @@ class Historial extends CActiveRecord
 		$criteria->compare('observacion',$this->observacion,true);
 		$criteria->compare('fecha_entrega',$this->fecha_entrega,true);
 		$criteria->compare('usr_id',$this->usr_id);
+
+		$criteria->order = "id DESC";
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

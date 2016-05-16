@@ -148,6 +148,7 @@ class OrdenController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$this->redirect(array('admin'));
 		$dataProvider=new CActiveDataProvider('Orden');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -239,5 +240,37 @@ class OrdenController extends Controller
 
 	public function actionSMS(){
 		die("Enviar SMS");
+	}
+
+	public function actionAprobar(){
+		try {
+			$orden = Orden::model()->findByPk($_GET['orden']);
+			if (!is_null($orden)) {
+				$estadoActual = Yii::app()->db->createCommand('SELECT eid FROM estado_actual WHERE oid ='.$orden->id)->queryAll();
+				if ($estadoActual[0]['eid'] < 3) {
+					if ($orden->cli_id === $_GET['cliente']) {
+						$historial = new Historial();
+						$historial->orden_id = $_GET['orden'];
+						$historial->estado_id = 3;
+						$historial->fecha = new CDbExpression('NOW()');
+						$historial->observacion = "Aprobado via web por el cliente";
+
+						if ($historial->save()) {
+							echo "La orden ha sido aprobada con exito";
+						}else{
+							print_r($historial->getErrors());
+						}
+					}else{
+						echo "Este link es invalido";
+					}
+				}else{
+					echo "La orden ya se encuentra aprobada o su estado actual es otro";
+				}
+			}else{
+				echo "Este link es invalido";
+			}
+		} catch (Exception $e) {
+			echo "Error en el sistema contacte a Digital Services";
+		}
 	}
 }

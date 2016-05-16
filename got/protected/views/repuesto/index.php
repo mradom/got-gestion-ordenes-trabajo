@@ -43,7 +43,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <div class="right">
     <input id="add_repuesto" type="button" style="display:block; clear: both;"
-           value="Create Repuesto" class="client-val-form button">
+           value="Cargar Nuevo Repuesto" class="client-val-form button">
 </div>
 
 <?php

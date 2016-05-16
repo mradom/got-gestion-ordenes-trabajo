@@ -180,13 +180,13 @@ return array(
                 'class' => 'application.modules.cruge.components.CrugeAuthManager',
         ),
         'crugemailer'=>array(
-                'class' => 'application.modules.cruge.components.CrugeMailer',
-                'mailfrom' => 'email-desde-donde-quieres-enviar-los-mensajes@xxxx.com',
-                'subjectprefix' => 'Tu Encabezado del asunto - ',
-                'debug' => true,
+                //'class' => 'application.modules.cruge.components.CrugeMailer',
+                'class' => 'application.components.crugeMailer',
+                'mailfrom' => 'info@digitalservicecba.com.ar',
+                'subjectprefix' => 'Testing - ',
         ),
         'format' => array(
-                'numberFormat'  => [ 'decimals' => 2, 'decimalSeparator' => '.', 'thousandSeparator' => false ],
+                'numberFormat'  => array( 'decimals' => 2, 'decimalSeparator' => '.', 'thousandSeparator' => false ),
                 'datetimeFormat'=>"d/m/Y H:m",
                 'dateFormat'    => 'd/m/Y',
         ),

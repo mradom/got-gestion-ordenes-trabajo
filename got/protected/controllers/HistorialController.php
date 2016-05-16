@@ -64,9 +64,24 @@ class HistorialController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model=new Historial;
 		// Uncomment the following line if AJAX validation is needed
+
+				/*echo "<pre>";
+				print_r($_POST['Historial']);
+				echo "</pre>";
+				die("HISTORIALCONTROLADOR.php CREATE");*/
+
+
 		$this->performAjaxValidation($model);
+
+			$orden = Orden::model()->findByPk($_POST['Historial']['orden_id']);
+			$cliente = Cliente::model()->findByPk($orden->cli_id);
+			/*echo "<pre>";
+			print_r($cliente->email);
+			echo "</pre>";
+			die("Porque no entra aca ... ");*/
 
 		if(isset($_POST['Historial']))
 		{
@@ -76,22 +91,23 @@ class HistorialController extends Controller
 
 			if($model->save()){
 				if ($_POST["Historial"]["estado_id"] == 2) {
-					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." espera su aprobacion. Tarea:Reparacion lente.Importe: $ ".$_POST["Historial"]["importe"]." DigitalService";
-					try {  
-					    $client=@new SoapClient('http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=mrad&clave=mrad280&tos=3516102103&texto='.$mensaje);	
-					} catch (Exception $e) {  
-					    echo $e->getMessage(); 
-					}
+					$link = "http://got.phpgroup.com.ar/orden/aprobar/".$_POST["Historial"]["orden_id"]."/".$cliente->id;
+					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." espera su aprobacion. \r\n";
+					$mensaje = $mensaje . "Tarea: ".$_POST['Historial']['observacion']."\r\n";
+					$mensaje = $mensaje . "Importe: $ ".$_POST["Historial"]["importe"]." \r\nDigitalService";
+					$mensaje = $mensaje . "\r\n\r\n\r\n";
+					$mensaje = $mensaje . "Usted puede aprobar el siguiente trabajo haciendo <a href='$link'>click aca</a>!\r\n\r\n";
+					$mensaje = $mensaje . "O bien copiar el siguiente link y pegarlo en el navegador.\r\n $link \r\n";
+					$mensaje = $mensaje . "Ante cualquier consulta, no dude en contactarse con nosotros - 0351 - 4237572";
+
+					Yii::app()->crugemailer->solicitaAprobacion($cliente, "Solicitamos Aprobacion de Orden de Trabajo", $mensaje);
 				}
 
 				if ($_POST["Historial"]["estado_id"] == 5) {
-					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." esta lista para retirar. DigitalService";
-					$client=new SoapClient('http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=mrad&clave=mrad280&tos=3516102103&texto='.$mensaje);	
+					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." ha finalizado y esta lista para retirar. DigitalService";
+					Yii::app()->crugemailer->solicitaAprobacion($cliente, "Finalizacion de Orden de Trabajo", $mensaje);
 				}
 				$this->redirect(array('/orden/'.$model->orden_id));
-				//die($client);
-				//echo $client->getPrice('GOOGLE');
-				//$this->redirect(array('/orden/SMS/'.$model->orden_id));
 			}else {
 				echo "<pre>";
 				print_r($this);
@@ -100,10 +116,6 @@ class HistorialController extends Controller
 				die("HISTORIALCONTROLADOR.php CREATE");
 			}
 		}
-
-			//$this->redirect(array('/orden/'.$model->orden_id));		
-			//$this->render('create',array('model'=>$model,
-		
 	}
 
 	/**
