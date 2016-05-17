@@ -73,7 +73,7 @@ class Repuesto extends CActiveRecord
 			'detalle' => 'Detalle',
 			'cantidad' => 'Cantidad',
 			'precio_unitario' => 'Precio Unitario',
-			'tip_id' => 'Tip',
+			'tip_id' => 'Tipo',
 		);
 	}
 

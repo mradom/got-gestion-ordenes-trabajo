@@ -27,6 +27,10 @@ $this->menu=array(
 		'detalle',
 		'cantidad',
 		'precio_unitario',
-		'tip_id',
+		array(
+            'label'=>'Tipo',
+            'type'=>'raw',
+            'value'=>TipoRepuesto::model()->findbyPk($model->tip_id)->tipo,
+        ),
 	),
 )); ?>

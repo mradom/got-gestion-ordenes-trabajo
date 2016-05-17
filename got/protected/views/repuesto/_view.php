@@ -30,8 +30,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tip_id')); ?>:</b>
-	<?php echo CHtml::encode($data->tip_id); ?>
+	<?php $tipo = TipoRepuesto::model()->findByPk($data->tip_id); ?>
+	<?php echo CHtml::encode($tipo->tipo); ?>
 	<br />
-
 
 </div>

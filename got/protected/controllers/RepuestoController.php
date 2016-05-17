@@ -124,10 +124,11 @@ class RepuestoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Repuesto');
+		$this->redirect(array('admin'));
+		/*$dataProvider=new CActiveDataProvider('Repuesto');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+		));*/
 	}
 
 	/**
