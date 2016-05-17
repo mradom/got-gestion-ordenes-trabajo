@@ -256,6 +256,28 @@ class OrdenController extends Controller
 			));	
 	}
 
+	public function actionGrabarRepuesto($id){
+		$rep_id = $_GET['rep'];
+		$ord_id = $id;
+		$model = $this->loadModel($id);
+		try {
+			$historial = new Historial();
+			$historial->orden_id = $ord_id;
+			$historial->estado_id = $this->getEstadoActual($ord_id);
+			$historial->fecha = new CDbExpression('NOW()');
+			$historial->observacion = "Usando Repuesto";
+			$historial->save();
+		} catch (Exception $e) {
+			echo "ERROR";
+		}
+		$this->redirect(array('view','id'=>$model->id));
+	}
+
+
+	public function getEstadoActual($id){
+		return Yii::app()->db->createCommand('select e.* from historial as h inner join estado as e on e.id = h.estado_id where h.fecha = ( select max(`fecha`) from historial where orden_id = h.orden_id ) and h.orden_id = '.$id)->queryAll();
+	}
+
 	public function actionAprobar(){
 		try {
 			$orden = Orden::model()->findByPk($_GET['orden']);
