@@ -242,6 +242,20 @@ class OrdenController extends Controller
 		die("Enviar SMS");
 	}
 
+	public function actionUsarRepuesto($id){
+
+		$repuesto=new Repuesto('search');
+		$repuesto->unsetAttributes();  // clear any default values
+		if(isset($_GET['Repuesto']))
+			$repuesto->attributes=$_GET['Repuesto'];
+
+		$model=$this->loadModel($id);
+		$this->render('repuesto', array(
+				'model' => $model,
+				'repuesto' => $repuesto,
+			));	
+	}
+
 	public function actionAprobar(){
 		try {
 			$orden = Orden::model()->findByPk($_GET['orden']);

@@ -76,7 +76,7 @@ $model->orden_id = $_GET['id'];
 	if ($estadoActual == 4){
 	?>
 	<div class="row">
-		<?php echo CHtml::link('Usar Repuesto','#',array('id'=>"get_repuesto")); ?>
+		<?php echo CHtml::link('Usar Repuesto','usarRepuesto'); ?>
 	</div>
 	
 	<?php
