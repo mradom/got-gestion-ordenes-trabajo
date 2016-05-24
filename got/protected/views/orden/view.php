@@ -22,6 +22,9 @@ $this->menu=array(
 	- Orden creada por: <?php echo Yii::app()->user->name;?>
 </div>
 <?php
+/*$item = Aparato::model()->findbyPk($model->apa_id)->aparato;
+print_r($item);
+die();*/
 $list = Yii::app()->db->createCommand('select e.* from historial as h inner join estado as e on e.id = h.estado_id where h.fecha = ( select max(`fecha`) from historial where orden_id = h.orden_id ) and h.orden_id = '.$model->id)->queryAll();
 $estadoActual = "<span class='resaltar'>".$list[0]['descripcion']."</span>";
 $this->widget('zii.widgets.CDetailView', array(
@@ -56,7 +59,7 @@ $this->widget('zii.widgets.CDetailView', array(
 		array(
             'label'=>'Cliente',
             'type'=>'raw',
-            'value'=>Cliente::model()->findbyPk($model->cli_id)->apellido . ", " . Cliente::model()->findbyPk($model->cli_id)->nombre ,
+            'value'=>Cliente::model()->findbyPk($model->cli_id)->apellido . ", " . Cliente::model()->findbyPk($model->cli_id)->nombre,
         ),
         
 		array(
@@ -138,5 +141,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 		'observacion',
 	),
-)); ?>
-
+));

@@ -52,12 +52,14 @@ class OrdenController extends Controller
 		$historial = new Historial();
 		$estado = new Estado();
 		$usuario = new Usuario();
+		$cliente = new Cliente();
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'suc'=>$sucursal,
 			'hist'=>$historial,
 			'estado'=>$estado,
 			'usuario'=>$usuario,
+			'cliente'=>$cliente,
 		));
 	}
 	
@@ -261,12 +263,26 @@ class OrdenController extends Controller
 		$ord_id = $id;
 		$model = $this->loadModel($id);
 		try {
+
+			$repuestoOrden = new RepuestoOrden();
+			$repuestoOrden->rep_id = $rep_id;
+			$repuestoOrden->ord_id = $ord_id;
+			$repuestoOrden->save();
+
+			$repuestoModelo = new Repuesto();
+			$repuesto = $repuestoModelo->findByPk($rep_id);
+			$repuesto->cantidad = $repuesto->cantidad - 1;
+			$repuesto->save();
+
 			$historial = new Historial();
 			$historial->orden_id = $ord_id;
-			$historial->estado_id = $this->getEstadoActual($ord_id);
+			$estadoActual = $this->getEstadoActual($ord_id);
+			$historial->estado_id = $estadoActual[0]['id'];
 			$historial->fecha = new CDbExpression('NOW()');
-			$historial->observacion = "Usando Repuesto";
+			$historial->observacion = "Usando Repuesto - Marca: " .$repuesto->marca . " - detalle: ". $repuesto->detalle;
+			$historial->usr_id = isset(Yii::app()->user->id) ? Yii::app()->user->id : "1";
 			$historial->save();
+
 		} catch (Exception $e) {
 			echo "ERROR";
 		}

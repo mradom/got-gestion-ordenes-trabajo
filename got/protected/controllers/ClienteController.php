@@ -53,8 +53,10 @@ class ClienteController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$orden = new Orden();
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'orden'=>$orden,
 		));
 	}
 

@@ -33,3 +33,9 @@ $this->menu=array(
 		'observacion',
 	),
 )); ?>
+
+<table class="detail-view">
+	<tr>
+		<td><?php echo $this->renderPartial('../orden/ordenByCliente', array('model'=>$orden,'cliente'=>$model)); ?></td>
+	</tr>
+</table>

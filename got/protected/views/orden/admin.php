@@ -47,23 +47,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'esn',
-		/*
-		'cli_id',
-		'suc_id',
-		'mar_id',
-		'uid',
-		*/
-		/*array(
-			'name'=>'id',
-			'header'=>'# Orden',
-			'value'=>$model->id,
-			'htmlOptions'=>array('width'=>'60'),
-		),*/
-		/*array(
-			'name'=>'esn',
-			'header'=>'# SN',
-			'value'=>$model->esn,
-		),*/
 		array(
 			'name'=>'aparato.aparato',
 			'header'=>'Aparato',
@@ -76,11 +59,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 		'modelo',
 		/*array(
-			'name'=>'modelo',
-			'header'=>'Modelo',
-			'value'=>$model->modelo,
-		),*/
-		array(
 			'name'=>'cliente.id',
 			'header'=>'Apellido',
 			'value'=>'$data->getRelated(\'cli\')->apellido',
@@ -89,7 +67,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'cliente.id',
 			'header'=>'Nombre',
 			'value'=>'$data->getRelated(\'cli\')->nombre',
-		),
+		),*/
 		
 		array(
 			'name'=>'u.uid',
@@ -107,4 +85,4 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'template'=>'{view}',
 		),
 	),
-)); ?>
+));
