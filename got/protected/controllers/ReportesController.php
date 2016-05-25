@@ -17,26 +17,42 @@ class ReportesController extends Controller
 
 	public function actionTerminados()
 	{
-		$orden = new Orden();
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
 		$orden->estado_id = 5;
 		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));
+		$this->render('reporte',array('model'=>$orden));
 	}
 
 	public function actionAprobada()
 	{
-		$orden = new Orden();
+		/*$orden = new Orden('search');
 		$orden->estado_id = 3;
 		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));
+		$this->render('reporte',array('orden'=>$orden));*/
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
+		$orden->estado_id = 3;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('model'=>$orden));
 	}
 
 	public function actionEspAprobacion()
 	{
-		$orden = new Orden();
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
 		$orden->estado_id = 2;
 		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));
+		$this->render('reporte',array('model'=>$orden));
 	}
 
 	public function actionOtros()
@@ -47,18 +63,26 @@ class ReportesController extends Controller
 
 	public function actionPendiente()
 	{
-		$orden = new Orden();
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
 		$orden->estado_id = 1;
 		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));
+		$this->render('reporte',array('model'=>$orden));
 	}
 
 	public function actionReparacion()
 	{
-		$orden = new Orden();
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
 		$orden->estado_id = 4;
 		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));
+		$this->render('reporte',array('model'=>$orden));
 	}
 
 	// Uncomment the following methods and override them if needed
