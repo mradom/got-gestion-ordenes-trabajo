@@ -23,4 +23,8 @@ class crugeMailer extends CrugeMailerBase {
 		mail($to, $subject, $body, $headers);
 	//parent::sendEmail($to,$subject,$body);
 	}
+
+	public function sendPasswordTo(){
+		return true;
+	}
 }

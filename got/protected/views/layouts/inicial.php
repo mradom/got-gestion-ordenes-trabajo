@@ -57,6 +57,7 @@
 	<?php endif */?>
 	<div id="content-login">
 		<?php echo $content; ?>
+		<p>Usuario: admin<br>Password: admin</p>
 	</div>
 	<div class="clear"></div>
 

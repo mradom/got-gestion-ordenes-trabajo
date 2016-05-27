@@ -45,6 +45,15 @@
 			'class'=>'CButtonColumn',
 			'header'=>'Acciones',
 			'template'=>'{view}',
+			'buttons'=>array
+			(
+				'view' => array
+				(
+				    'label'=>'Ver Orden',
+				    //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
+				    'url'=>'Yii::app()->createUrl("orden", array($data->id))',
+				),
+			),
 		),
 	),
 ));

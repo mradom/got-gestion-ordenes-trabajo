@@ -45,7 +45,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		array(
+			'name'=>'id',
+			'header'=>'#Orden',
+			'htmlOptions'=>array('width'=>'40'),
+		),
 		'esn',
 		array(
 			'name'=>'aparato.aparato',
@@ -58,7 +62,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'value'=>'$data->getRelated(\'mar\')->marca', // ESTO TRAE EL DATO DE OTRA TABLA RELACIONADA
 		),
 		'modelo',
-		/*array(
+		array(
 			'name'=>'cliente.id',
 			'header'=>'Apellido',
 			'value'=>'$data->getRelated(\'cli\')->apellido',
@@ -67,7 +71,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'name'=>'cliente.id',
 			'header'=>'Nombre',
 			'value'=>'$data->getRelated(\'cli\')->nombre',
-		),*/
+		),
 		
 		array(
 			'name'=>'u.uid',

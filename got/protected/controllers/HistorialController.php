@@ -91,7 +91,7 @@ class HistorialController extends Controller
 
 			if($model->save()){
 				if ($_POST["Historial"]["estado_id"] == 2) {
-					$link = "http://got.phpgroup.com.ar/orden/aprobar/".$_POST["Historial"]["orden_id"]."/".$cliente->id;
+					$link = "http://got.phpgroup.com.ar/orden/aprobar/id/".$_POST["Historial"]["orden_id"]."/cliente/".$cliente->id;
 					$mensaje = "Sr. Cliente la orden ".$_POST["Historial"]["orden_id"]." espera su aprobacion. \r\n";
 					$mensaje = $mensaje . "Tarea: ".$_POST['Historial']['observacion']."\r\n";
 					$mensaje = $mensaje . "Importe: $ ".$_POST["Historial"]["importe"]." \r\nDigitalService";

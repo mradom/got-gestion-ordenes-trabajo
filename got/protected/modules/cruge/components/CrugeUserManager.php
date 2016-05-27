@@ -754,7 +754,7 @@ class CrugeUserManager
         //echo $field->predetvalue;
         $arOpt = array();
         if ($field->fieldtype == CRUGEFIELDTYPE_LISTBOX) {
-            YiiBase::autoload("sucursal");
+            //YiiBase::autoload("sucursal");
             $items = array(CHtml::listData(Sucursal::model()->findAll(), 'id', 'nombre'));
             //$arOpt = CrugeUtil::explodeOptions('hola \n1 \n2 \n3 4 5');
             //$arOpt = CrugeUtil::explodeOptions($items[0]);
