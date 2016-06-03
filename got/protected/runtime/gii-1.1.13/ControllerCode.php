@@ -2,5 +2,5 @@
 return array (
   'template' => 'default',
   'baseClass' => 'Controller',
-  'actions' => 'admin create delete update',
+  'actions' => 'admin create delete update dashboard me',
 );
