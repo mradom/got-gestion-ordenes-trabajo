@@ -67,7 +67,8 @@ class OrdenController extends Controller
 	{
 		$this->layout='//layouts/imprimir'; 
 		$sucursal = new Sucursal();
-		$historial = new Historial();
+		$historial = Historial::model()->findBySql('select * from historial where orden_id ='.$id.' and estado_id = 1')->fecha;
+		//$model->suc_id = Usuario::model()->findBySql("select * from usuario where cruge_id = ".Yii::app()->user->id)->suc_id;
 		$estado = new Estado();
 		$usuario = new Usuario();
 		$this->render('imprimir',array(
@@ -296,13 +297,13 @@ class OrdenController extends Controller
 
 	public function actionAprobar(){
 		try {
-			$orden = Orden::model()->findByPk($_GET['orden']);
+			$orden = Orden::model()->findByPk($_GET['id']);
 			if (!is_null($orden)) {
 				$estadoActual = Yii::app()->db->createCommand('SELECT eid FROM estado_actual WHERE oid ='.$orden->id)->queryAll();
 				if ($estadoActual[0]['eid'] < 3) {
 					if ($orden->cli_id === $_GET['cliente']) {
 						$historial = new Historial();
-						$historial->orden_id = $_GET['orden'];
+						$historial->orden_id = $_GET['id'];
 						$historial->estado_id = 3;
 						$historial->fecha = new CDbExpression('NOW()');
 						$historial->observacion = "Aprobado via web por el cliente";
@@ -324,5 +325,9 @@ class OrdenController extends Controller
 		} catch (Exception $e) {
 			echo "Error en el sistema contacte a Digital Services";
 		}
+	}
+
+	public function actionGoto(){
+		$this->redirect(array('view','id'=>$_POST['Orden']['id']));
 	}
 }

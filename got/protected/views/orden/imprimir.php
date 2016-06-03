@@ -7,7 +7,7 @@
 				<tr>
 					<td align="center" width="35%"><img src="../../images/logo_print.jpg"></td>
 					<td align="center"><b>Cliente</b><br><span class="x"><b>X</b></span><br><span class="leyenda">Documento<br>no valido como factura</span><br>Belgrano 94 - 5000 Córdoba<br>Tel: 0351 - 4237572</td>
-					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo "01-".str_pad($model->id, 8, "0", STR_PAD_LEFT); ?></h3><br>20/08/2013</td>
+					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo "01-".str_pad($model->id, 8, "0", STR_PAD_LEFT); ?></h3><br><?php echo Yii::app()->dateFormatter->format("d/M/y",strtotime($hist));?></td>
 				</tr>
 			</table>
 		</td>
@@ -40,7 +40,7 @@
 	</tr>
 </table>
 <div class="url">www.digitalservicecba.com.ar</div>
-<br><hr><br><br><br>
+<br><br><hr><br><br>
 <table width="100%" cellpadding=0 cellspacing=0 border="1">
 	<tr>
 		<td>
@@ -48,7 +48,7 @@
 				<tr>
 					<td align="center" width="35%"><img src="../../images/logo_print.jpg"></td>
 					<td align="center"><b>Laboratorio</b><br><span class="x"><b>X</b></span><br><span class="leyenda">Documento<br>no valido como factura</span><br>Belgrano 94 - 5000 Córdoba<br>Tel: 0351 - 4237572</td>
-					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo "01-".str_pad($model->id, 8, "0", STR_PAD_LEFT); ?></h3><br>20/08/2013</td>
+					<td width="35%">PEDIDO DE ATENCIÓN TÉCNICA<br><h3>Nº: <?php echo "01-".str_pad($model->id, 8, "0", STR_PAD_LEFT); ?></h3><br><?php echo Yii::app()->dateFormatter->format("d/M/y",strtotime($hist));?></td>
 				</tr>
 			</table>
 		</td>

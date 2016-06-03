@@ -15,6 +15,8 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
         'O. Aprobadas' => array('ajax' => $this->createAbsoluteUrl('Reportes/aprobada')),
         'Reparacion' => array('ajax' => $this->createAbsoluteUrl('Reportes/Reparacion')),
         'Terminadas' => array('ajax' => $this->createAbsoluteUrl('Reportes/terminados')),
+        'Entregadas' => array('ajax' => $this->createAbsoluteUrl('Reportes/Entregados')),
+        'Ent. sin cargo' => array('ajax' => $this->createAbsoluteUrl('Reportes/Sincargo')),
         //'Otros' => array('ajax' => $this->createAbsoluteUrl('Reportes/Otros')),
         // panel 3 contains the content rendered by a partial view
         //'AjaxTab' => array('ajax' => $this->createUrl('/AjaxModule/ajax/reqTest01')),

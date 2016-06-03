@@ -10,7 +10,7 @@
 	body{font: arial;}
 	.conf{
 		font-size: 8px;
-		margin: 0;
+		margin: 0 0 0 10px;
 	}
 	.leyenda{
 		font-size: 8px;

@@ -85,6 +85,30 @@ class ReportesController extends Controller
 		$this->render('reporte',array('model'=>$orden));
 	}
 
+	public function actionEntregados()
+	{
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
+		$orden->estado_id = 6;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('model'=>$orden));
+	}
+
+	public function actionSincargo()
+	{
+		$orden=new Orden('search');
+		$orden->unsetAttributes();  // clear any default values
+		if(isset($_GET['Orden']))
+			$orden->attributes=$_GET['Orden'];
+
+		$orden->estado_id = 7;
+		$this->layout='//layouts/vacio'; 
+		$this->render('reporte',array('model'=>$orden));
+	}
+
 	// Uncomment the following methods and override them if needed
 	
 	public function filters()

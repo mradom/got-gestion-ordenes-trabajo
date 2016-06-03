@@ -33,6 +33,19 @@ You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&g
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>-->
 
+<div class="form">
+	<?php echo CHtml::beginForm('Goto'); ?>
+	     
+	    <div class="row">
+	        <label for="Orden_id">Orden</label>        
+	        <input name="Orden[id]" id="Orden_id" type="text">
+	    </div>
+	    <div class="row submit">
+	        <input type="submit" name="yt0" value="Ir">
+	    </div>
+	<?php echo CHtml::endForm(); ?>
+</div><!-- form -->
+
 <?php echo CHtml::link('Busqueda Avanzada','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
