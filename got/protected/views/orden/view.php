@@ -108,8 +108,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(
 			'name'=>'u.cruge_id',
 			'header'=>'Usuario',
-			'value' => 'Yii::app()->user->um->loadUserById($data->getRelated(\'u\')->cruge_id,true)->username;'
-			//'value' => '$data->getRelated(\'u\')->cruge_id',
+			'value' => 'Yii::app()->user->um->loadUserById($data->getRelated(\'u\')->uid,true)->username;'
 		),
 		array(
 			'name'=>'estado.nombre',
