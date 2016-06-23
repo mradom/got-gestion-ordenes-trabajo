@@ -53,6 +53,9 @@ class OrdenController extends Controller
 		$estado = new Estado();
 		$usuario = new Usuario();
 		$cliente = new Cliente();
+		$tecnicos = new TecnicoOrden('search');
+		$tecnicos->oid = $id;
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'suc'=>$sucursal,
@@ -60,8 +63,21 @@ class OrdenController extends Controller
 			'estado'=>$estado,
 			'usuario'=>$usuario,
 			'cliente'=>$cliente,
+			'tecnicos'=>$tecnicos,
+			'tecnicoOrden'=>$tecnicos,
 		));
 	}
+
+    public function actionAsignarTecnico($id){
+        $tid = $_POST['GetTecnicos_tid'];
+        $oid = $id;
+        $tecnicoOrden = new TecnicoOrden();
+        $tecnicoOrden->tid = $tid;
+        $tecnicoOrden->oid = $oid;
+        $tecnicoOrden->save();
+
+        $this->actionView($oid);
+    }
 	
 	public function actionImprimir($id)
 	{
@@ -163,15 +179,29 @@ class OrdenController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Orden('search');
+		/*$model=new Orden('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Orden']))
 			$model->attributes=$_GET['Orden'];
-		
+
+		if (Yii::app()->user->checkAccess('tecnico') && Yii::app()->user->id != 1) {
+			$model->estado_id = 3;
+		}
+
 		$model->suc_id = Usuario::model()->findBySql("select * from usuario where cruge_id = ".Yii::app()->user->id)->suc_id;
 		$this->render('admin',array(
 			'model'=>$model,
-		));
+		));*/
+
+        $model=new GetOrdenesFull('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['GetOrdenesFull']))
+            $model->attributes=$_GET['GetOrdenesFull'];
+
+        $this->render('admin',array(
+            'model'=>$model,
+        ));
+
 	}
 
 
@@ -330,4 +360,5 @@ class OrdenController extends Controller
 	public function actionGoto(){
 		$this->redirect(array('view','id'=>$_POST['Orden']['id']));
 	}
+
 }

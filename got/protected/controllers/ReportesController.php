@@ -15,6 +15,11 @@ class ReportesController extends Controller
 		));
 	}
 
+	public function actionView($id)
+	{
+		$this->redirect(array('orden/view','id'=>$id));
+	}
+
 	public function actionTerminados()
 	{
 		$orden=new Orden('search');
@@ -29,18 +34,15 @@ class ReportesController extends Controller
 
 	public function actionAprobada()
 	{
-		/*$orden = new Orden('search');
-		$orden->estado_id = 3;
-		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('orden'=>$orden));*/
-		$orden=new Orden('search');
-		$orden->unsetAttributes();  // clear any default values
-		if(isset($_GET['Orden']))
-			$orden->attributes=$_GET['Orden'];
 
-		$orden->estado_id = 3;
-		$this->layout='//layouts/vacio'; 
-		$this->render('reporte',array('model'=>$orden));
+        $model=new GetOrdenesAprobadas('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['GetOrdenesAprobadas']))
+            $model->attributes=$_GET['GetOrdenesAprobadas'];
+
+		$this->layout='//layouts/vacio';
+		$this->render('aprobadas',array('model'=>$model));
+
 	}
 
 	public function actionEspAprobacion()

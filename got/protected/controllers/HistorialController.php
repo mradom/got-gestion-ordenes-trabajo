@@ -209,4 +209,14 @@ class HistorialController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function guardarTecnico(TecnicoOrden $tecnicoOrden, $estadoActual){
+		$historial = new Historial();
+		$historial->orden_id = $tecnicoOrden->oid;
+		$historial->estado_id = $estadoActual;
+		$historial->fecha = new CDbExpression('NOW()');
+		$historial->observacion = "Se asigna tecnico a esta orden";
+		$historial->save();
+		return true;
+	}
 }

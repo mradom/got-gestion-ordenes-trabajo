@@ -91,6 +91,35 @@ $this->widget('zii.widgets.CDetailView', array(
 		<td><?php echo $this->renderPartial('../historial/_form', array('model'=>$hist,'estadoActual'=>$list[0]['id'])); ?></td>
 	</tr>
 </table>
+<?php
+if ($list[0]['id'] == 3) {
+?>
+<table>
+	<tr>
+		<td>
+<div class="form">
+
+<form action='AsignarTecnico/<?php echo $model->id; ?>' method='POST' id='tecnico-orden-form'>
+
+	<?php echo $tecnicos->tid;?>
+
+    <div class="row">
+		<label for="GetTecnicos_tid">Asignar Tecnico</label>
+        <?php echo CHtml::dropDownList('GetTecnicos_tid','', CHtml::listData(GetTecnicos::model()->findAll(), 'iduser', 'username')); ?>
+    </div>
+
+    <div class="row buttons">
+        <?php echo CHtml::submitButton($tecnicoOrden->isNewRecord ? 'Crear' : 'Guardar'); ?>
+    </div>
+
+</form>
+
+</div><!-- form -->
+</td>
+	</tr>
+</table>
+
+<?php } ?>
 
 <?php
 $hist->orden_id = $model->id;

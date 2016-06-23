@@ -32,6 +32,7 @@
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Ordenes', 'url'=>array('/orden/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Mis Ordenes', 'url'=>array('/orden/MisOrdenes'), 'visible'=>Yii::app()->user->checkAccess('tecnico')),
 				array('label'=>'Clientes', 'url'=>array('/cliente'),    'visible'=>!Yii::app()->user->isGuest),
 				//array('label'=>'Crear Orden', 'url'=>array('/cliente'), 'visible'=>!Yii::app()->user->isGuest),//Yii::app()->user->checkAccess('superAdmin')),
 				array('label'=>'Sucursal', 'url'=>array('/sucursal'), 'visible'=>Yii::app()->user->checkAccess('superAdmin')),

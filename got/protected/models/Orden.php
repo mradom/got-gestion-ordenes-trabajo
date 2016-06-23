@@ -27,6 +27,7 @@
 class Orden extends CActiveRecord
 {
 	public $estado_id;
+	public $estadoActual;
 	
 	protected function afterSave(){
 		$historial = new Historial();
@@ -97,6 +98,7 @@ class Orden extends CActiveRecord
 			'apa' => array(self::BELONGS_TO, 'Aparato', 'apa_id'),
 			'u' => array(self::BELONGS_TO, 'Usuario', 'uid'),
 			'repuestos' => array(self::MANY_MANY, 'Repuesto', 'repuesto_orden(ord_id, rep_id)'),
+			//'estados' => array(self::HAS_ONE, 'EstadoActual', 'oid'),
 		);
 	}
 

@@ -3,6 +3,13 @@
 class TecnicosController extends Controller
 {
 
+    public $layout='//layouts/column2';
+
+    public function filters()
+    {
+        return array(array('CrugeAccessControlFilter'));
+    }
+
     public function actionIndex()
     {
         $this->render('admin');
